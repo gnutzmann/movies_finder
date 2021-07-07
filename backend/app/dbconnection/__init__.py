@@ -1,5 +1,4 @@
 def get_database():
-    from pymongo import MongoClient
 
     CONNECTION_STRING = "mongodb://localhost"
 
