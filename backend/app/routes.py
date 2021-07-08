@@ -21,8 +21,8 @@ def movies():
     return json_data
 
 
-@app.route('/movie/<id>')
-def movie(id):
+@app.route('/movie/id/<id>')
+def movie_id(id):
     collection = get_database()['movies_collection']
     cursor = collection.find({'ID': int(id)})
     list_cur = list(cursor)
@@ -32,10 +32,21 @@ def movie(id):
     return json_data
 
 
-@app.route('/movie_name/<movie_name>')
-def movie_name(movie_name):
+@app.route('/movie/title/<title>')
+def movie_title(title):
     collection = get_database()['movies_collection']
-    cursor = collection.find({'Title': str(movie_name)})
+    cursor = collection.find({'Title': {"$regex": str(title)}})
+    list_cur = list(cursor)
+
+    json_data = dumps(list_cur)
+
+    return json_data
+
+
+@app.route('/movie/director/<director>')
+def movie_director(director):
+    collection = get_database()['movies_collection']
+    cursor = collection.find({'Directors': {"$regex": str(director)}})
     list_cur = list(cursor)
 
     json_data = dumps(list_cur)
