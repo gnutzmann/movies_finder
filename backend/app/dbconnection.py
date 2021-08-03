@@ -12,5 +12,6 @@ def get_database():
 
 # This is added so that many files can reuse the function get_database()
 if __name__ == "__main__":
+    pass
 
-    dbname = get_database()
+db = get_database()

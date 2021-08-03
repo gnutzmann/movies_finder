@@ -2,7 +2,6 @@ import datetime
 import pandas as pd
 
 
-
 def get_database():
     from pymongo import MongoClient
 
@@ -28,10 +27,11 @@ if __name__ == '__main__':
                                                'Type', 'Directors',
                                                'Genres', 'Country', 'Language',
                                                'Runtime'])
-    #datetime.timedelta(hours=-3))
+    # datetime.timedelta(hours=-3))
     movies['created_at'] = datetime.datetime.utcnow()
     movies['updated_at'] = datetime.datetime.utcnow()
-    
+
+    movies.fillna('', inplace=True)
     if len(movies) > 0:
         moviesList = movies.to_dict('records')
 
